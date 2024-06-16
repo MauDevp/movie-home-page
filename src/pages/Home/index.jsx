@@ -1,7 +1,8 @@
 import { Layout } from '../../Components/Layout';
 import { CardInitial } from '../../Components/CardInitial';
 import { SectionCards } from '../../Components/SectionCards';
-import { useMovies } from '../../data'; // 
+import { useMovies } from '../../data';
+import { motion } from "framer-motion";
 
 
 const Home = () => {
@@ -14,13 +15,19 @@ const Home = () => {
 
     //!SECTION Return
     return (
-        <Layout>
-            <CardInitial data={movies[contador]} />
-            <SectionCards contents={movies} cantCards={6} nameSection='Películas populares' />
-            <SectionCards contents={tvShows} cantCards={6} nameSection='Series populares' />
-            <SectionCards contents={topRated} cantCards={6} nameSection='Mejores valoradas' />
-            <SectionCards contents={trending} cantCards={6} nameSection='Tendencias' />
-        </Layout>
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+        >
+            <Layout>
+                <CardInitial data={movies[contador]} />
+                <SectionCards contents={movies} cantCards={6} nameSection='Películas populares' />
+                <SectionCards contents={tvShows} cantCards={6} nameSection='Series populares' />
+                <SectionCards contents={topRated} cantCards={6} nameSection='Mejores valoradas' />
+                <SectionCards contents={trending} cantCards={6} nameSection='Tendencias' />
+            </Layout>
+        </motion.div>
     );
 };
 

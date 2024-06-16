@@ -5,6 +5,7 @@ import { Home2 } from '../Home2/index.jsx'
 import { NavBar } from '../../Components/NavBar'
 import { CardSummary } from '../../Components/CardSummary'
 import { SpeedInsights } from '@vercel/speed-insights/react';
+import { AnimatePresence } from "framer-motion"
 
 const AppRoutes = () => {
   let routes = useRoutes([
@@ -19,11 +20,13 @@ const AppRoutes = () => {
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <AppRoutes />
-        <SpeedInsights />
-        <NavBar />
-      </BrowserRouter>
+      <AnimatePresence>
+        <BrowserRouter>
+          <AppRoutes />
+          <SpeedInsights />
+          <NavBar />
+        </BrowserRouter>
+      </AnimatePresence>
     </>
   )
 }
