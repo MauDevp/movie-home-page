@@ -13,7 +13,6 @@ const AppRoutes = () => {
     { path: '/movie/:id', element: <CardSummary /> },
     { path: '/tv/:id', element: <CardSummary /> },
   ])
-
   return routes
 }
 
