@@ -13,6 +13,8 @@ const useMovies = () => {
     const [idFilm, setIdFilm] = useState(1022789);
     const [typeFilm, setTypeFilm] = useState('movie');
 
+    let language = 'es-MX'
+
     const options = {
         method: 'GET',
         headers: {
@@ -26,10 +28,10 @@ const useMovies = () => {
             setIsLoading(true);
             try {
                 const responses = await Promise.all([
-                    fetch('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc', options),
-                    fetch('https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc', options),
-                    fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', options),
-                    fetch('https://api.themoviedb.org/3/trending/all/week?language=en-US', options)
+                    fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=${language}&page=1&sort_by=popularity.desc`, options),
+                    fetch(`https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=${language}&page=1&sort_by=popularity.desc`, options),
+                    fetch(`https://api.themoviedb.org/3/movie/top_rated?language=${language}&page=1`, options),
+                    fetch(`https://api.themoviedb.org/3/trending/all/week?language=${language}`, options)
                 ]);
                 const data = await Promise.all(responses.map(response => {
                     if (!response.ok) {
@@ -55,7 +57,7 @@ const useMovies = () => {
         const fetchSearchId = async () => {
             setIsLoading(true);
             try {
-                const response = await fetch(`https://api.themoviedb.org/3/${typeFilm}/${idFilm}?language=en-US`, options);
+                const response = await fetch(`https://api.themoviedb.org/3/${typeFilm}/${idFilm}?language=${language}`, options);
                 if (!response.ok) {
                     throw new Error('Your search did not return any results, please try another');
                 }
