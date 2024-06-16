@@ -1,5 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-import { BorderColor } from '@mui/icons-material';
 import colors from 'tailwindcss/colors';
 
 export default {
