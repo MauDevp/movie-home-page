@@ -1,3 +1,4 @@
+import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useMovies } from '../../data';
 import { ProgressCircle } from '@tremor/react';
@@ -5,9 +6,10 @@ import Rating from '@mui/material/Rating';
 
 const CardSummary = () => {
     const { setIdFilm, setTypeFilm, isLoading, error, searchId } = useMovies();
+    const location = useLocation();
 
     useEffect(() => {
-        const currentPath = window.location.pathname;
+        const currentPath = location.pathname;
         const index = currentPath.substring(currentPath.lastIndexOf('/') + 1);
         const ruteString = currentPath.split('/');
         const rute = ruteString[1];
