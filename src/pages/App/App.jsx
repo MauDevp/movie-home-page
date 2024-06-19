@@ -19,7 +19,7 @@ const AppRoutes = () => {
     { path: '/movies/:page', element: <MoviesPages  /> },
     { path: '/tvShows/:page', element: <MoviesPages/> },
     { path: '/topRated/:page', element: <MoviesPages /> },
-    { path: '/trending', element: <MoviesPages /> },
+    { path: '/trending/:page', element: <MoviesPages /> },
   ]);
   return routes;
 };

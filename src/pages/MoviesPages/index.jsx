@@ -73,7 +73,7 @@ const MoviesPages = () => {
                     <p>Cargando...</p> // Aquí puedes mostrar un spinner o mensaje de carga
                 ) : allDataLoaded ? (
                     <div>
-                        <div className="grid gap-4 grid-cols-1 md:grid-cols-5 w-full max-w-screen-lg mt-14">
+                        <div className="grid gap-4 grid-cols-1 md:grid-cols-5 w-full max-w-screen-lg mt-14 mb-12">
                             {contents?.map((content) => (
                                 <motion.div
                                     key={content.id}
@@ -85,33 +85,37 @@ const MoviesPages = () => {
                                 </motion.div>
                             ))}
                         </div>
-                        <div className="flex flex-row items-center justify-center gap-4 mt-14 mb-16">
-                            <div
-                                className="rounded-full bg-blue-600 size-12 flex items-center justify-center cursor-pointer"
-                                onClick={() => {
-                                    if (page > 1) {
-                                        handlePageChange(page - 1);
-                                    }
-                                }}
-                            >
-                                <RiArrowLeftLine size={28} />
-                            </div>
-                            <div className="rounded-full bg-blue-800 h-14 w-32 flex items-center justify-center gap-2">
-                                <p className="text-white font-semibold flex items-center justify-center size-10 bg-blue-500 rounded-full">{page}</p>
-                                <p className="text-white font-semibold">de</p>
-                                <p className="text-white font-semibold">500</p>
-                            </div>
-                            <div
-                                className="rounded-full bg-blue-600 size-12 flex items-center justify-center cursor-pointer"
-                                onClick={() => {
-                                    if (page < 500) {
-                                        handlePageChange(page + 1);
-                                    }
-                                }}
-                            >
-                                <RiArrowRightLine size={28} />
-                            </div>
-                        </div>
+                        {
+                            section !== 'trending' ? (        
+                                <div className="flex flex-row items-center justify-center gap-4 mt-14 mb-16">
+                                    <div
+                                        className="rounded-full bg-blue-600 size-12 flex items-center justify-center cursor-pointer"
+                                        onClick={() => {
+                                            if (page > 1) {
+                                                handlePageChange(page - 1);
+                                            }
+                                        }}
+                                    >
+                                        <RiArrowLeftLine size={28} />
+                                    </div>
+                                    <div className="rounded-full bg-blue-800 h-14 w-32 flex items-center justify-center gap-2">
+                                        <p className="text-white font-semibold flex items-center justify-center size-10 bg-blue-500 rounded-full">{page}</p>
+                                        <p className="text-white font-semibold">de</p>
+                                        <p className="text-white font-semibold">500</p>
+                                    </div>
+                                    <div
+                                        className="rounded-full bg-blue-600 size-12 flex items-center justify-center cursor-pointer"
+                                        onClick={() => {
+                                            if (page < 500) {
+                                                handlePageChange(page + 1);
+                                            }
+                                        }}
+                                    >
+                                        <RiArrowRightLine size={28} />
+                                    </div>
+                                </div>
+                            ) : ('')
+                        }
                     </div>
                 ) : null}
             </Layout>
