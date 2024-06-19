@@ -1,20 +1,30 @@
 import { useState, useEffect } from 'react';
 
 const useMovies = () => {
+    // Estados para almacenar las películas, series, las mejor valoradas y las tendencias
     const [movies, setMovies] = useState([]);
     const [tvShows, setTvShows] = useState([]);
     const [topRated, setTopRated] = useState([]);
     const [trending, setTrending] = useState([]);
+
+    // Estados para almacenar la búsqueda por id
     const [searchId, setSearchId] = useState([]);
 
+    // Estados para almacenar el estado de carga y errores
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
     
+    // Estados para almacenar el id y el tipo de búsqueda
     const [idFilm, setIdFilm] = useState(1022789);
     const [typeFilm, setTypeFilm] = useState('movie');
 
+    const [page, setPage] = useState(1);
+
+    // Variable para almacenar el idioma
     let language = 'es-MX'
 
+
+    // Opciones para la petición
     const options = {
         method: 'GET',
         headers: {
@@ -23,14 +33,15 @@ const useMovies = () => {
         }
     };
 
+    // Petición para obtener las películas, series, las mejor valoradas y las tendencias
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
             try {
                 const responses = await Promise.all([
-                    fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=${language}&page=1&sort_by=popularity.desc`, options),
-                    fetch(`https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=${language}&page=1&sort_by=popularity.desc`, options),
-                    fetch(`https://api.themoviedb.org/3/movie/top_rated?language=${language}&page=1`, options),
+                    fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=${language}&page=${page}&sort_by=popularity.desc`, options),
+                    fetch(`https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=${language}&page=${page}&sort_by=popularity.desc`, options),
+                    fetch(`https://api.themoviedb.org/3/movie/top_rated?language=${language}&page=${page}`, options),
                     fetch(`https://api.themoviedb.org/3/trending/all/week?language=${language}`, options)
                 ]);
                 const data = await Promise.all(responses.map(response => {
@@ -51,8 +62,9 @@ const useMovies = () => {
             }
         };
         fetchData();
-    }, []);
+    }, [page]);
 
+    // Petición para obtener la búsqueda por id
     useEffect(() => {
         const fetchSearchId = async () => {
             setIsLoading(true);
@@ -73,6 +85,7 @@ const useMovies = () => {
         fetchSearchId();
     }, [typeFilm, idFilm]);
 
+    // Contador para cambiar la película inicial
     const [contador, setContador] = useState(0);
     useEffect(() => {
         const intervalo = setInterval(() => {
@@ -81,7 +94,8 @@ const useMovies = () => {
         return () => clearInterval(intervalo);
     }, []);
 
-    return { movies, tvShows, topRated, trending, searchId, setIdFilm, setTypeFilm, isLoading, error, contador };
+    // Retorna las películas, series, las mejor valoradas y las tendencias
+    return { movies, tvShows, topRated, trending, searchId, setIdFilm, setTypeFilm, isLoading, error, contador, page, setPage};
 };
 
 export { useMovies }

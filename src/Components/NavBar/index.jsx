@@ -21,21 +21,38 @@ const NavBar = () =>{
                     title = 'Movie Summary';
                 } else if (path.match(/^\/tv\/\d+$/)) {
                     title = 'Tv Summary';
+                } else if (path.match(/^\/movies\/(\d+)$/)) {
+                    title = 'Movies';
+                } else if (path.match(/^\/tvShows\/(\d+)$/)) {
+                    title = 'TV Shows';
+                } else if (path.match(/^\/topRated\/(\d+)$/)) {
+                    title = 'Mejores Valoradas';
+                } else if (path.match(/^\/trending\/(\d+)$/)) {
+                    title = 'Trending';
                 } else {
-                    title = 'Películas';
+                    title = 'Movies';
                 }
                 break;
     }
 
     return(
         <nav className='fixed top-0 left-0 w-full h-20 flex items-center justify-around bg-[#09112c]'>
-                <ChevronLeftIcon className="size-10 text-white cursor-pointer" onClick={() => navigate('/')}/>
+                <ChevronLeftIcon 
+                    className={`${title == 'Home' ? 'hidden' : 'flex flex-row' } size-10 text-white cursor-pointer`} 
+                    onClick={() => {
+                        if(title == 'Movie Summary' || title == 'Tv Summary'){
+                            navigate(-1)
+                        }else if (title === 'Movies' || title === 'TV Shows' || title === 'Mejores Valoradas' || title === 'Trending'){
+                            navigate('/')
+                        }
+                    }}
+                />
                 <p 
                     className='text-4xl font-semibold'
                 >{title}
                 </p>
-                <div className='flex flex-row'>
-                    <TextInput icon={RiSearchLine} placeholder='Search...'  />
+                <div className='md:flex hidden flex-row'>
+                    <TextInput icon={RiSearchLine} placeholder='Find movies or tvs...'  />
                 </div>
         </nav>
     )
