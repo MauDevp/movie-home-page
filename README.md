@@ -1,6 +1,6 @@
 # Experiencia en Prueba Técnica Frontend de FinSphera
 
-He completado con éxito la prueba técnica de Frontend de FinSphera, demostrando mis habilidades como desarrollador frontend y aplicando prácticas modernas de desarrollo web.
+He completado con éxito la prueba técnica de Frontend de [FinSphera](https://github.com/finsphera/frontend_challenge?tab=readme-ov-file), demostrando mis habilidades como desarrollador frontend y aplicando prácticas modernas de desarrollo web.
 
 ## Detalles del Proyecto Desarrollado
 
