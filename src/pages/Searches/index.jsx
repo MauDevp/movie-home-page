@@ -28,32 +28,39 @@ const Searches = () => {
     }
 
 
-    if (!isLoading) return (
+    return (
         <Layout>
-            <div className="grid gap-4 grid-cols-2 md:grid-cols-5 w-full max-w-screen-lg mt-14 mb-12">
-            {searches?.results
-                .filter(search => 
-                    search.poster_path !== null && search.poster_path !== '' && // Asegura que poster_path no sea null ni cadena vacía
-                    search.known_for === undefined // Excluye ítems que contienen la propiedad known_for
-                ) 
-                .map((search, index) => (
-                    <motion.div
-                    key={search.id}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.5, delay: 0.1 }} // Configura la transición para cada CardMovie
-                    >
-                    <div key={index} >
-                        <CardMovie data={search} />
+            <div className="w-full max-w-screen-lg mt-14 mb-12">
+                {searches?.results && searches.results.length > 0
+                    ? <div className="grid gap-4 grid-cols-2 md:grid-cols-5 w-full">
+                        {searches.results
+                            .filter(search =>
+                                search.poster_path !== null && search.poster_path !== '' && // Asegura que poster_path no sea null ni cadena vacía
+                                search.known_for === undefined // Excluye ítems que contienen la propiedad known_for
+                            )
+                            .map((search, index) => (
+                                <motion.div
+                                    key={search.id}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ duration: 0.5, delay: 0.1 }} // Configura la transición para cada CardMovie
+                                >
+                                    <div key={index}>
+                                        <CardMovie data={search} />
+                                    </div>
+                                </motion.div>
+                            ))}
                     </div>
-                    </motion.div>
-            ))}
+                    : <div className='w-full flex justify-center'>
+                        <p className='font-semibold text-4xl'>No se encontraron resultados</p>
+                    </div>
+                }
             </div>
         </Layout>
     )
 }
 
-export {Searches}
+export { Searches }
 
 /**
 {
