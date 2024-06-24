@@ -23,10 +23,10 @@ const Home = () => {
         >
             <Layout>
                 <CardInitial data={movies[contador]} />
-                <SectionCards id="movies" contents={movies} cantCards={5} nameSection='Películas populares' />
-                <SectionCards id="tvShows" contents={tvShows} cantCards={5} nameSection='Series populares' />
-                <SectionCards id="topRated" contents={topRated} cantCards={5} nameSection='Mejores valoradas' />
-                <SectionCards id="trending" contents={trending} cantCards={5} nameSection='Tendencias' />
+                <SectionCards id="movies" contents={movies} nameSection='Películas populares' />
+                <SectionCards id="tvShows" contents={tvShows} nameSection='Series populares' />
+                <SectionCards id="topRated" contents={topRated} nameSection='Mejores valoradas' />
+                <SectionCards id="trending" contents={trending} nameSection='Tendencias' />
             </Layout>
         </motion.div>
     );

@@ -72,8 +72,8 @@ const MoviesPages = () => {
                 {isLoading ? (
                     <p>Cargando...</p> // Aquí puedes mostrar un spinner o mensaje de carga
                 ) : allDataLoaded ? (
-                    <div>
-                        <div className="grid gap-4 grid-cols-1 md:grid-cols-5 w-full max-w-screen-lg mt-14 mb-12">
+                    <div className='mx-6 md:mx-0'>
+                        <div className="grid gap-4 grid-cols-2 md:grid-cols-5 w-full max-w-screen-lg mt-14 mb-12">
                             {contents?.map((content) => (
                                 <motion.div
                                     key={content.id}
