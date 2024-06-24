@@ -28,7 +28,7 @@ const Searches = () => {
     }
 
 
-    return (
+    if (!isLoading) return (
         <Layout>
             <div className="grid gap-4 grid-cols-2 md:grid-cols-5 w-full max-w-screen-lg mt-14 mb-12">
             {searches?.results
