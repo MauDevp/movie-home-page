@@ -50,7 +50,7 @@ const CardSummary = () => {
             <div key={searchId?.id}>
                 {searchId ? (
                     <>
-                        <div className='flex md:flex-row flex-col items-center justify-center mt-24 md:mt-0'>
+                        <div className='flex md:flex-row flex-col items-center justify-center md:mb-0 mb-10 mt-32 md:mt-0'>
                             <figure className='md:mr-10'>
                                 <img
                                     className='w-full h-[32rem] object-cover rounded-lg text-xs font-extralight'
@@ -59,9 +59,9 @@ const CardSummary = () => {
                                 />
                             </figure>
                             <div className='flex flex-col w-10/12 md:w-6/12 items-center'>
-                                <p className='flex flex-col md:flex-row items-center justify-center font-semibold text-5xl md:mb-8 mb-10 md:mt-0 mt-4'>
+                                <p className='flex flex-col md:flex-row items-center justify-center font-semibold text-4xl md:text-4xl md:mb-8 mb-10 md:mt-0 mt-12'>
                                     {searchId.title || searchId.name}
-                                    <span className='font-extralight text-4xl ml-2'>
+                                    <span className='md:flex hidden font-extralight text-4xl ml-2'>
                                         ({searchId?.release_date?.split('-')[0] || searchId?.first_air_date?.split('-')[0]})
                                     </span>
                                 </p>

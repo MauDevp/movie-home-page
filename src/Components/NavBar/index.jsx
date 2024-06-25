@@ -26,9 +26,9 @@ const NavBar = () =>{
             default:
                 // Si no es una ruta estática, verifica las rutas dinámicas
                 if (path.match(/^\/movie\/\d+$/)) {
-                    title = 'Movie Summary';
+                    title = 'Movie Info';
                 } else if (path.match(/^\/tv\/\d+$/)) {
-                    title = 'Tv Summary';
+                    title = 'Tv Info';
                 } else if (path.match(/^\/movies\/(\d+)$/)) {
                     title = 'Movies';
                 } else if (path.match(/^\/tvShows\/(\d+)$/)) {
@@ -36,7 +36,7 @@ const NavBar = () =>{
                 } else if (path.match(/^\/topRated\/(\d+)$/)) {
                     title = 'Mejores Valoradas';
                 } else if (path.match(/^\/trending\/(\d+)$/)) {
-                    title = 'Trending';
+                    title = 'Tendencias';
                 } else {
                     title = 'Movies';
                 }
@@ -44,26 +44,26 @@ const NavBar = () =>{
     }
 
     return(
-        <nav className='fixed top-0 left-0 w-full h-20 flex items-center justify-around bg-[#09112c] box-content'>
+        <nav className='fixed top-0 left-0 w-full md:h-20 h-28 flex items-center justify-around bg-[#09112c] box-content'>
             <div className='relative flex flex-row w-full h-full items-center justify-around'>
                 <ChevronLeftIcon 
-                    className={`${title == 'Home' ? 'hidden' : 'flex flex-row' } absolute top-1/4 left-14 md:left-24 size-10 text-white cursor-pointer`} 
+                    className={`${title == 'Home' ? 'hidden' : 'flex flex-row' } absolute top-1/4 left-14 md:left-52  size-10 text-white cursor-pointer`} 
                     onClick={() => {
-                        if(title == 'Movie Summary' || title == 'Tv Summary'){
+                        if(title == 'Movie Info' || title == 'Tv Info'){
                             navigate(-1)
-                        }else if (title === 'Movies' || title === 'TV Shows' || title === 'Mejores Valoradas' || title === 'Trending'){
+                        }else if (title === 'Movies' || title === 'TV Shows' || title === 'Mejores Valoradas' || title === 'Tendencias'){
                             navigate('/')
                         }
                     }}
                 />
                 <p 
-                    className='absolute top-1/4 left-[38vw] text-4xl font-semibold'
+                    className='absolute md:top-1/4 top-[2rem] left-[38vw] text-4xl font-semibold'
                 > {title}
                 </p>
                 <div className='md:flex hidden flex-row'>
                     <form onSubmit={manejarEnvio}>
                         <TextInput
-                            className='absolute top-1/4 left-[68vw] w-52' 
+                            className='absolute md:top-1/4 top-[4rem] md:left-[68vw] left-[10rem] w-52 z-20' 
                             icon={RiSearchLine}  
                             placeholder='Find movies or tvs...'  
                             value={busqueda}

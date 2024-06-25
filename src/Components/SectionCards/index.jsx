@@ -4,9 +4,12 @@ import { CardMovie } from '../../Components/CardMovie';
 import PropTypes from 'prop-types';
 import {SectionContext} from '../../Contexts';
 import { useMovies } from '../../data';
+import { motion } from "framer-motion";
 
 const SectionCards = ({id, contents, nameSection}) => {
     const cantidadAMostrar = window.innerWidth >= 768 ? 5 : 4;
+    const  VersionScrollIntoView = window.innerWidth >= 768 ? 'start' : 'end';
+
     const {page} = useMovies();
     const navigate = useNavigate();
     const { showMore, setShowMore } = useContext(SectionContext);
@@ -44,7 +47,7 @@ const SectionCards = ({id, contents, nameSection}) => {
                     sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 } else if (cantidadMostrada > cantidadAMostrar) {
                     // Desplaza la última tarjeta agregada a la vista
-                    cardMovieRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    cardMovieRef.current?.scrollIntoView({ behavior: 'smooth', block: VersionScrollIntoView });
                 }
             });
         }
@@ -90,9 +93,13 @@ const SectionCards = ({id, contents, nameSection}) => {
             <p className='md:text-3xl text-4xl md:mb-6 mb-10 border-b-4 md:border-b-2 border-yellow-300'>{nameSection}</p>
             <div ref={cardMovieRef} tabIndex="-1" className={`grid gap-4 grid-cols-2 md:grid-cols-${cantidadAMostrar} w-full max-w-screen-lg`}>
                 {contents?.slice(0, cantidadMostrada).map(content => (
-                    <div key={content.id}>
+                    <motion.div 
+                        key={content.id}
+                        whileHover={{ scale: [null, 1.3, 1.1] }}
+                        transition={{ duration: 0.4 }}
+                    >
                         <CardMovie data={content} />
-                    </div>
+                    </motion.div>
                 ))}
             </div>
             {botones()}
